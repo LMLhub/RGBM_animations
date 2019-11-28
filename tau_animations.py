@@ -16,8 +16,6 @@ STEP_SIZE=10
 
 price=pd.read_pickle("price-05.pkl")
 
-height=pd.Series(index=price.columns,data=0)
-
 for i in range(10):
     i_day=i*STEP_SIZE
     fig = plt.figure()
@@ -33,4 +31,3 @@ for i in range(10):
 #   plt.close(fig)
 #animation = camera.animate()
 #animation.save('celluloid_minimal.gif', writer = 'imagemagick')
-
