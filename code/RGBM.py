@@ -15,7 +15,7 @@ T=100
 dt=.1
 mu=0.08
 sigma=0.18
-tau=-.05
+tau=0.0
 #Derived parameters:
 time_steps=(int(T/dt))
 sdt=np.sqrt(dt)
@@ -32,8 +32,8 @@ for t in range(1,time_steps):
     x[t]=x[t-1]*(1+mu*dt+sigma*xi[t]*sdt)-tau*(x[t-1]-np.mean(x[t-1]))*dt
 
 #Save RGBM data
-price=pd.DataFrame(x)
-price.to_pickle("price-05.pkl")
+wealth=pd.DataFrame(x)
+wealth.to_pickle("./../data/wealth_"+str(tau)+".pkl")
 
 #plot trajectories
 s=np.arange(0,(t+1))*dt
