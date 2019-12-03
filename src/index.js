@@ -4,14 +4,6 @@ const generateWealthTrajectories = require('./rgbm');
 
 var config = {
   type: 'bar',
-  data: {
-    labels: range(100),
-    datasets: [
-      {
-        data: []
-      }
-    ]
-  },
   options: {
     legend: { display: false },
     animation: false,
@@ -47,6 +39,7 @@ function plotTimeStep(chart, step, data) {
     fontSize: 20,
     text: 'Time ' + step
   };
+  chart.data.labels = range(data.length);
   chart.data.datasets = [{ backgroundColor: '#c45850', data: data }];
   chart.update();
 }
