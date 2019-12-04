@@ -1,14 +1,14 @@
 // Box-Muller Transform (see https://en.wikipedia.org/wiki/Box–Muller_transform)
 
-const cwise = require('cwise');
-const ndarray = require('ndarray');
+const cwise = require("cwise");
+const ndarray = require("ndarray");
 
 const compiled_normal = cwise({
-  args: ['array'],
-  pre: function () {
+  args: ["array"],
+  pre: function() {
     this.shuffle = false;
   },
-  body: function (a) {
+  body: function(a) {
     var u,
       v,
       r = 0.0;
@@ -29,8 +29,8 @@ const compiled_normal = cwise({
   }
 });
 
-const Normal = function (shape) {
-  if (typeof shape === 'number' && shape >= 0) {
+const Normal = function(shape) {
+  if (typeof shape === "number" && shape >= 0) {
     shape = [shape];
   }
   var s = shape.reduce((acc, n) => acc * n, 1);
