@@ -44,16 +44,17 @@ function plotTimeStep(chart, step, data) {
   chart.update();
 }
 
-window.onload = function() {
+window.onload = function () {
   var ctx = document.getElementById('animation').getContext('2d');
   window.chart = new Chart(ctx, config);
 };
 
-document.getElementById('startAnimation').addEventListener('click', function() {
+document.getElementById('startAnimation').addEventListener('click', function () {
   if (window.animate) {
     clearInterval(window.animate);
   }
 
+  var wealthTrajectories = generateWealthTrajectories(N, T, dt, mu, sigma, tau);
   var timeStep = 0;
   var N = getParam('N');
   var T = getParam('T');
@@ -64,9 +65,8 @@ document.getElementById('startAnimation').addEventListener('click', function() {
 
   const maxSteps = Math.floor(T / dt / 10);
 
-  window.animate = window.setInterval(function() {
+  window.animate = window.setInterval(function () {
     if (timeStep < maxSteps) {
-      var wealthTrajectories = generateWealthTrajectories(N, T, dt, mu, sigma, tau);
       var row = unpackArray(wealthTrajectories.pick(timeStep * 10, null));
       plotTimeStep(window.chart, timeStep, row);
       timeStep++;

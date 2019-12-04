@@ -5,10 +5,10 @@ const ndarray = require('ndarray');
 
 const compiled_normal = cwise({
   args: ['array'],
-  pre: function() {
+  pre: function () {
     this.shuffle = false;
   },
-  body: function(a) {
+  body: function (a) {
     var u,
       v,
       r = 0.0;
@@ -29,7 +29,7 @@ const compiled_normal = cwise({
   }
 });
 
-const Normal = function(shape) {
+const Normal = function (shape) {
   if (typeof shape === 'number' && shape >= 0) {
     shape = [shape];
   }
