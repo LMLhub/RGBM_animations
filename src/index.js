@@ -1,6 +1,6 @@
 const Chart = require("chart.js");
 const { unpackArray, range } = require("./utils");
-const generateWealthTrajectories = require("./rgbm");
+const { generateWealthTrajectories, getHistograms } = require("./rgbm");
 
 var config = {
   type: "bar",
@@ -46,7 +46,9 @@ function plotTimeStep(chart, step, data) {
 
 window.onload = function() {
   var ctx = document.getElementById("animation").getContext("2d");
-  window.chart = new Chart(ctx, config);
+  var hist_ctx = document.getElementById("histogram").getContext("2d");
+  window.barplot = new Chart(ctx, config);
+  window.histogram = new Chart(hist_ctx, config);
 };
 
 document.getElementById("startAnimation").addEventListener("click", function() {
@@ -62,13 +64,16 @@ document.getElementById("startAnimation").addEventListener("click", function() {
   var sigma = getParam("sigma");
   var tau = getParam("tau");
   var wealthTrajectories = generateWealthTrajectories(N, T, dt, mu, sigma, tau);
+  var histograms = getHistograms(wealthTrajectories, 20);
 
   const maxSteps = Math.floor(T / dt / 10);
 
   window.animate = window.setInterval(function() {
     if (timeStep < maxSteps) {
       var row = unpackArray(wealthTrajectories.pick(timeStep * 10, null));
-      plotTimeStep(window.chart, timeStep, row);
+      var histRow = unpackArray(histograms.pick(timeStep * 10, null));
+      plotTimeStep(window.barplot, timeStep, row);
+      plotTimeStep(window.histogram, timeStep, histRow);
       timeStep++;
     } else {
       clearInterval(window.animate);
