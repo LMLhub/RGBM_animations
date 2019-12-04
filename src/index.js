@@ -54,7 +54,6 @@ document.getElementById('startAnimation').addEventListener('click', function () 
     clearInterval(window.animate);
   }
 
-  var wealthTrajectories = generateWealthTrajectories(N, T, dt, mu, sigma, tau);
   var timeStep = 0;
   var N = getParam('N');
   var T = getParam('T');
@@ -62,6 +61,7 @@ document.getElementById('startAnimation').addEventListener('click', function () 
   var mu = getParam('mu');
   var sigma = getParam('sigma');
   var tau = getParam('tau');
+  var wealthTrajectories = generateWealthTrajectories(N, T, dt, mu, sigma, tau);
 
   const maxSteps = Math.floor(T / dt / 10);
 
