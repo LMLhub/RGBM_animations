@@ -63,8 +63,9 @@ document.getElementById("startAnimation").addEventListener("click", function() {
   var mu = getParam("mu");
   var sigma = getParam("sigma");
   var tau = getParam("tau");
+  var bins = getParam("bins");
   var wealthTrajectories = generateWealthTrajectories(N, T, dt, mu, sigma, tau);
-  var histograms = getHistograms(wealthTrajectories, 20);
+  var histograms = getHistograms(wealthTrajectories, bins);
 
   const maxSteps = Math.floor(T / dt / 10);
 
