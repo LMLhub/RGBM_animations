@@ -1,24 +1,21 @@
 // Re-allocating GBM wealth distribution model
 
-const ndarray = require("ndarray");
-const ops = require("ndarray-ops");
-const Normal = require("./box-muller");
+const ndarray = require('ndarray');
+const ops = require('ndarray-ops');
+const Normal = require('./box-muller');
 
 function generateWealthTrajectories(N, T, dt, mu, sigma, tau) {
-  N = typeof N !== "undefined" ? N : 100;
-  T = typeof T !== "undefined" ? T : 100;
-  dt = typeof dt !== "undefined" ? dt : 0.1;
-  mu = typeof mu !== "undefined" ? mu : 0.08;
-  sigma = typeof sigma !== "undefined" ? sigma : 0.18;
-  tau = typeof tau !== "undefined" ? tau : 0.01;
+  N = typeof N !== 'undefined' ? N : 100;
+  T = typeof T !== 'undefined' ? T : 100;
+  dt = typeof dt !== 'undefined' ? dt : 0.1;
+  mu = typeof mu !== 'undefined' ? mu : 0.08;
+  sigma = typeof sigma !== 'undefined' ? sigma : 0.18;
+  tau = typeof tau !== 'undefined' ? tau : 0.01;
 
   const timeSteps = Math.floor(T / dt);
   const sdt = Math.sqrt(dt);
 
-  var wealthTrajectories = ndarray(new Float64Array(timeSteps * N), [
-    timeSteps,
-    N
-  ]);
+  var wealthTrajectories = ndarray(new Float64Array(timeSteps * N), [timeSteps, N]);
 
   // Initially everyone has wealth 1
   ops.assigns(wealthTrajectories, 1.0);
@@ -45,6 +42,10 @@ function generateWealthTrajectories(N, T, dt, mu, sigma, tau) {
     ops.addseq(buffer, -ops.sum(prevRow) / prevRow.size);
     ops.mulseq(buffer, -tau * dt);
     ops.addeq(currentRow, buffer);
+
+    // Normalize wealth by dividing by maximum
+    const maxWealth = ops.sup(currentRow);
+    ops.divseq(currentRow, maxWealth);
   }
 
   return wealthTrajectories;

@@ -28,21 +28,21 @@
       </p>
     </div>
     <div class="parameters">
-      <label for="N">N</label>
+      <label for="N">Number of individuals N:</label>
       <input type="range" id="N" name="N" min="10" max="1000" value="100" step="10" onchange="Nvalue.value=value" />
       <output id="Nvalue">100</output>
-      <label for="T">T</label>
+      <label for="T">Total time T:</label>
       <input type="range" id="T" name="T" min="10" max="1000" value="100" step="10" onchange="Tvalue.value=value" />
       <output id="Tvalue">100</output>
-      <label for="dt">dt</label>
+      <label for="dt">Time increment dt:</label>
       <input type="range" id="dt" name="dt" min="0.01" max="1" value="0.1" step="0.01" onchange="dtvalue.value=value" />
       <output id="dtvalue">0.1</output>
 
-      <label for="mu">&#956;</label>
+      <label for="mu">Mean wealth increment &#956;:</label>
       <input type="range" id="mu" name="mu" min="0" max="1" value="0.08" step="0.01" onchange="muvalue.value=value" />
       <output id="muvalue">0.08</output>
 
-      <label for="sigma">&#963;</label>
+      <label for="sigma">Std of wealth increments &#963;:</label>
       <input
         type="range"
         id="sigma"
@@ -55,7 +55,7 @@
       />
       <output id="sigmavalue">0.18</output>
 
-      <label for="tau">&#964;</label>
+      <label for="tau">Re-allocation parameter &#964;:</label>
       <input
         type="range"
         id="tau"
@@ -68,7 +68,7 @@
       />
       <output id="tauvalue">0.01</output>
 
-      <label for="bins">bins</label>
+      <label for="bins">Number of bins</label>
       <input
         type="range"
         id="bins"
