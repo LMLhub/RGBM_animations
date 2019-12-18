@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css?family=Baskervville|Cinzel&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Baskervville|Cinzel&display=swap");
 /* Color Scheme
 
 #25274D
@@ -19,9 +18,9 @@ Fonts
 */
 
 body {
-    font-family: 'Baskervville', serif;
+  font-family: "Baskervville", serif;
   font-size: 1.2rem;
-  background:rgb(251, 251, 253);
+  background: rgb(251, 251, 253);
   color: black;
   margin: 0;
 }
@@ -35,14 +34,14 @@ body {
 }
 
 a {
-    color: #2E9CCA;
-    text-decoration: none;
+  color: #2e9cca;
+  text-decoration: none;
 }
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 h1 {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-weight: 800;
   font-size: 5rem;
   color: black;
@@ -55,8 +54,8 @@ h1 {
   text-align: center;
 }
 
-.title{
-    font-weight: 900;
+.title {
+  font-weight: 900;
 }
 
 .info-container {
@@ -67,7 +66,6 @@ h1 {
   color: black;
   border-bottom: solid #c2bfbf 0.05rem;
   border-top: solid #c2bfbf 0.05rem;
-
 }
 
 button {
@@ -76,16 +74,16 @@ button {
   border: none;
   border-radius: 0.5rem;
   background: #2e9cca;
-  
 }
 
-.button-container{
-    display: flex;
-    justify-content: center;
+.button-container {
+  display: flex;
+  justify-content: center;
 }
 
 .info {
   width: 30rem;
+  margin-right: 1rem;
   font-size: 1.3rem;
 }
 
@@ -101,11 +99,10 @@ button {
   width: 60%;
 }
 
-.time{
-    position: relative;
-    top: 10rem;
+.time {
+  position: relative;
+  top: 10rem;
 }
-
 
 .graph-wrapper {
   display: flex;
@@ -127,17 +124,16 @@ button {
   border: solid 1px rgb(199, 199, 199);
   border-radius: 0.2rem;
   color: black;
-
 }
 
-footer{
-    margin-top: 2rem;
-    height: 20rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #25274D;
-    color: white;
+footer {
+  margin-top: 2rem;
+  height: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #25274d;
+  color: white;
 }
 .ba {
   border-style: solid;
@@ -179,7 +175,6 @@ footer{
   color: #fff;
 }
 
-
 .pv2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -212,4 +207,66 @@ footer{
 .dim:active {
   opacity: 0.8;
   transition: opacity 0.15s ease-out;
+}
+
+@media only screen and (max-width: 1024px) {
+  .info-container {
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 1.5rem;
+  }
+
+  .info {
+    min-width: 90%;
+  }
+
+  body {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 600px) and (orientation: portrait){
+   h1{
+       font-size: 2rem;
+   }
+
+   .info{
+       width: 70%;
+   }
+
+   .parameters{
+    grid-template-columns: 1fr;
+   }
+
+   .graph-container{
+       flex-direction: column-reverse;
+       align-items:center;
+   }
+
+   #container{
+       width: 90%;
+   }
+
+   .graph-info{
+       width: 60%;
+       margin-bottom: 2rem;
+   }
+
+   .time{
+      top: 1px;
+   }
+}
+
+@media only screen and (max-height: 600px) and (orientation: landscape){
+    .parameter-container{
+        width: 100%;
+       
+    }
+    .parameters{
+        width: 90%;
+    grid-template-columns: 12rem 20rem 5rem;
+
+    }
+
+    
 }
