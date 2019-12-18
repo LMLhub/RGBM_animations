@@ -34,7 +34,7 @@ body {
 }
 
 a {
-  color: #2e9cca;
+  color: rgb(46, 156, 203);
   text-decoration: none;
 }
 a:hover {
@@ -100,8 +100,7 @@ button {
 }
 
 .time {
-  position: relative;
-  top: 10rem;
+  font-weight: 800;
 }
 
 .graph-wrapper {
@@ -128,12 +127,17 @@ button {
 
 footer {
   margin-top: 2rem;
+  padding: 0 3rem;
   height: 20rem;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
   background: #25274d;
   color: white;
+}
+
+footer > p{
+    margin: 0.5rem 0;
 }
 .ba {
   border-style: solid;
