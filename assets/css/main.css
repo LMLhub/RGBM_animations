@@ -71,11 +71,17 @@ h1 {
 }
 
 button {
-  margin: 2rem 0;
+  margin: 2rem 1rem;
   width: 5rem;
   border: none;
   border-radius: 0.5rem;
   background: #2e9cca;
+  
+}
+
+.button-container{
+    display: flex;
+    justify-content: center;
 }
 
 .info {
@@ -94,6 +100,12 @@ button {
 #container {
   width: 60%;
 }
+
+.time{
+    position: relative;
+    top: 10rem;
+}
+
 
 .graph-wrapper {
   display: flex;

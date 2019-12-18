@@ -5,6 +5,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  <meta property="og:image" content="assets/static/ScreenShot.png">
+  <meta property="og:url" content="assets/static/ScreenShot.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image:src" content="assets/static/ScreenShot.png">
+  <meta name="description" content="Interactive simulation of N wealth trajectories over T time steps">
   <link rel="stylesheet" href="assets/css/main.css" />
   <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet" />
   <title>RGBM wealth distribution model</title>
@@ -93,10 +99,11 @@
             />
             <output id="binsvalue">20</output>
             </div>
+      <div class="button-container">
         <button class="f6 link dim ph3 pv2 mb2 dib white bg-dark-green" id="startAnimation">Play</button>
         <button class="f6 link dim ph3 pv2 mb2 dib white bg-dark-green" id="pauseAnimation">Pause</button>
         <button class="f6 link dim ph3 pv2 mb2 dib white bg-dark-green" id="stopAnimation">Stop</button>
-
+      </div>
     </div>
   </div>
 
@@ -112,6 +119,7 @@
       <div class="graph-info">
         <p class="title">Wealth levels over time</p>
         <p>Aca podria ir algo de info sobre el grafico, como muestra las cosas o lo ejes</p>
+        <span class="time" id="animation_time"></span>
       </div>
     </div>
 
@@ -122,6 +130,8 @@
         <div class="graph-info">
           <p class="title">Histogram of wealth levels</p>
           <p>Aca podria ir algo de info sobre el grafico, como muestra las cosas o lo ejes</p>
+          <span class="time" id="histogram_time"></span>
+          
         </div>
       </div>
 
