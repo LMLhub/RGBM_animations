@@ -47,6 +47,12 @@ function plotTimeStep(chart, step, data) {
   chart.update();
 }
 
+function resetChart(chart) {
+  var data = chart.data.datasets[0].data;
+  chart.data.datasets[0].data = data.map(el => 0);
+  chart.update();
+}
+
 window.onload = function() {
   var ctx = document.getElementById('animation').getContext('2d');
   var hist_ctx = document.getElementById('histogram').getContext('2d');
@@ -69,9 +75,8 @@ stopButton.addEventListener('click', function() {
   if (window.animate) {
     clearInterval(window.animate);
   }
-  window.barplot.clear();
-  window.histogram.clear();
-
+  resetChart(window.barplot);
+  resetChart(window.histogram);
   window.isPaused = true;
   window.isDone = true;
 });
