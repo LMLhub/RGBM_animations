@@ -266,6 +266,15 @@ footer > p{
 
    .parameters{
     grid-template-columns: 1fr;
+    grid-gap: 1.3rem;
+    /* grid-template-columns: 8rem 10rem 1rem; */
+
+   }
+
+   output{
+       margin-top: -2rem;
+       display: flex;
+       justify-content: flex-end;
    }
 
    .graph-container{
@@ -284,6 +293,9 @@ footer > p{
 
    .time{
       top: 1px;
+   }
+   .subtitle{
+       display: none;
    }
 }
 
