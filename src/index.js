@@ -2,48 +2,57 @@ const Chart = require('chart.js');
 const { unpackArray, range } = require('./utils');
 const { generateWealthTrajectories, getHistograms } = require('./rgbm');
 
-var config = {
-  type: 'bar',
-  options: {
-    legend: { display: false },
-    animation: false,
-    events: [],
-    scales: {
-      xAxes: [
-        {
-          gridLines: {
-            display: false
-          },
-          ticks: {
-            display: false
+function getConfig(xLabel, xTicks, yLabel) {
+  xTicks = typeof xTicks !== 'undefined' ? xTicks : false;
+  return {
+    type: 'bar',
+    options: {
+      legend: { display: false },
+      animation: false,
+      events: [],
+      scales: {
+        xAxes: [
+          {
+            scaleLabel: {
+              display: true,
+              fontSize: 18,
+              labelString: xLabel
+            },
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              display: xTicks
+            }
           }
-        }
-      ],
-      yAxes: [
-        {
-          display: true,
-          ticks: {
-            steps: 10,
-            stepValue: 5,
-            min: 0
+        ],
+        yAxes: [
+          {
+            scaleLabel: {
+              display: true,
+              fontSize: 18,
+              labelString: yLabel
+            },
+            ticks: {
+              steps: 10,
+              stepValue: 5,
+              min: 0
+            }
           }
-        }
-      ]
+        ]
+      }
     }
-  }
-};
-
-function plotTimeStep(chart, step, data) {
-  chart.options.title = {
-    display: true,
-    fontSize: 20,
   };
-  chart.data.labels = range(data.length);
+}
+
+function plotTimeStep(chart, step, data, labels) {
+  labels = typeof labels !== 'undefined' ? labels : range(data.length);
+  chart.data.labels = labels;
   chart.data.datasets = [{ backgroundColor: '#c45850', data: data }];
-  const histogram_time_span = document.getElementById("histogram_time");
-    histogram_time_span.innerHTML =  step + " years"
-  const animation_time_span = document.getElementById("animation_time");
-    animation_time_span.innerHTML = step + " years"
+  const histogram_time_span = document.getElementById('histogram_time');
+  histogram_time_span.innerHTML = 'Year ' + step;
+  const animation_time_span = document.getElementById('animation_time');
+  animation_time_span.innerHTML = 'Year ' + step;
   chart.update();
 }
 
@@ -56,8 +65,8 @@ function resetChart(chart) {
 window.onload = function() {
   var ctx = document.getElementById('animation').getContext('2d');
   var hist_ctx = document.getElementById('histogram').getContext('2d');
-  window.barplot = new Chart(ctx, config);
-  window.histogram = new Chart(hist_ctx, config);
+  window.barplot = new Chart(ctx, getConfig('Individual', false, 'Normalized wealth'));
+  window.histogram = new Chart(hist_ctx, getConfig('Wealth percentile', true, 'Number of individuals'));
 };
 
 window.isPaused = false;
@@ -99,6 +108,10 @@ playButton.addEventListener('click', function() {
     histograms = getHistograms(wealthTrajectories, bins);
 
     const maxSteps = Math.floor(T / dt / 10);
+    const histStep = 100 / bins;
+    const binLabels = range(bins).map(
+      el => `${Math.round(el * histStep * 100) / 100} - ${Math.round((el + 1) * histStep * 100) / 100}`
+    );
 
     window.animate = window.setInterval(function() {
       if (!window.isPaused) {
@@ -106,7 +119,7 @@ playButton.addEventListener('click', function() {
           var row = unpackArray(wealthTrajectories.pick(timeStep * 10, null));
           var histRow = unpackArray(histograms.pick(timeStep * 10, null));
           plotTimeStep(window.barplot, timeStep, row);
-          plotTimeStep(window.histogram, timeStep, histRow);
+          plotTimeStep(window.histogram, timeStep, histRow, binLabels);
           timeStep++;
         } else {
           window.isDone = true;
