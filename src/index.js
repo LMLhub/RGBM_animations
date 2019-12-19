@@ -34,17 +34,18 @@ var config = {
 };
 
 function plotTimeStep(chart, step, data) {
-  chart.options.title = {
-    display: true,
-    fontSize: 20,
-    text: 'Time ' + step
-  };
   chart.data.labels = range(data.length);
   chart.data.datasets = [{ backgroundColor: '#c45850', data: data }];
   const histogram_time_span = document.getElementById("histogram_time");
     histogram_time_span.innerHTML =  step + " years"
   const animation_time_span = document.getElementById("animation_time");
     animation_time_span.innerHTML = step + " years"
+  chart.update();
+}
+
+function resetChart(chart) {
+  var data = chart.data.datasets[0].data;
+  chart.data.datasets[0].data = data.map(el => 0);
   chart.update();
 }
 
@@ -70,9 +71,8 @@ stopButton.addEventListener('click', function() {
   if (window.animate) {
     clearInterval(window.animate);
   }
-  window.barplot.clear();
-  window.histogram.clear();
-
+  resetChart(window.barplot);
+  resetChart(window.histogram);
   window.isPaused = true;
   window.isDone = true;
 });
