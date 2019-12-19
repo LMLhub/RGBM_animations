@@ -2,7 +2,7 @@ const Chart = require('chart.js');
 const { unpackArray, range } = require('./utils');
 const { generateWealthTrajectories, getHistograms } = require('./rgbm');
 
-function getConfig(xTicks) {
+function getConfig(xLabel, xTicks, yLabel) {
   xTicks = typeof xTicks !== 'undefined' ? xTicks : false;
   return {
     type: 'bar',
@@ -13,6 +13,11 @@ function getConfig(xTicks) {
       scales: {
         xAxes: [
           {
+            scaleLabel: {
+              display: true,
+              fontSize: 18,
+              labelString: xLabel
+            },
             gridLines: {
               display: false
             },
@@ -23,7 +28,11 @@ function getConfig(xTicks) {
         ],
         yAxes: [
           {
-            display: true,
+            scaleLabel: {
+              display: true,
+              fontSize: 18,
+              labelString: yLabel
+            },
             ticks: {
               steps: 10,
               stepValue: 5,
@@ -41,9 +50,9 @@ function plotTimeStep(chart, step, data, labels) {
   chart.data.labels = labels;
   chart.data.datasets = [{ backgroundColor: '#c45850', data: data }];
   const histogram_time_span = document.getElementById('histogram_time');
-  histogram_time_span.innerHTML = step + ' years';
+  histogram_time_span.innerHTML = 'Year ' + step;
   const animation_time_span = document.getElementById('animation_time');
-  animation_time_span.innerHTML = step + ' years';
+  animation_time_span.innerHTML = 'Year ' + step;
   chart.update();
 }
 
@@ -56,8 +65,8 @@ function resetChart(chart) {
 window.onload = function() {
   var ctx = document.getElementById('animation').getContext('2d');
   var hist_ctx = document.getElementById('histogram').getContext('2d');
-  window.barplot = new Chart(ctx, getConfig());
-  window.histogram = new Chart(hist_ctx, getConfig(true));
+  window.barplot = new Chart(ctx, getConfig('Individual', false, 'Normalized wealth'));
+  window.histogram = new Chart(hist_ctx, getConfig('Wealth percentile', true, 'Number of individuals'));
 };
 
 window.isPaused = false;
@@ -100,7 +109,9 @@ playButton.addEventListener('click', function() {
 
     const maxSteps = Math.floor(T / dt / 10);
     const histStep = 100 / bins;
-    const binLabels = range(bins).map(el => `${el * histStep} - ${(el + 1) * histStep}`);
+    const binLabels = range(bins).map(
+      el => `${Math.round(el * histStep * 100) / 100} - ${Math.round((el + 1) * histStep * 100) / 100}`
+    );
 
     window.animate = window.setInterval(function() {
       if (!window.isPaused) {
