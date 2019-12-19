@@ -37,7 +37,6 @@ function plotTimeStep(chart, step, data) {
   chart.options.title = {
     display: true,
     fontSize: 20,
-    text: 'Time ' + step
   };
   chart.data.labels = range(data.length);
   chart.data.datasets = [{ backgroundColor: '#c45850', data: data }];
