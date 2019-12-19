@@ -31,6 +31,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 80vh;
+  margin-top: 3rem;
 }
 
 a {
@@ -45,9 +46,35 @@ h1 {
   font-weight: 800;
   font-size: 5rem;
   color: black;
-  margin: 3rem 0 3rem 2rem;
   text-align: center;
-  border-bottom: solid black 2px;
+  margin: 0;
+}
+
+.underline{
+    border-bottom: solid black 2px;
+    padding-bottom: 3.5rem;
+}
+
+.subtitle{
+    font-size: 1.2rem;
+    color: rgb(82, 81, 81);
+    margin: 1.5rem 0;
+}
+
+.letter{
+    color: rgb(2, 2, 2);
+    font-weight: 800;
+    font-size: 1.6rem;
+}
+
+.quote{
+    display: flex;
+    align-self: flex-start;
+    margin: 2rem;
+    margin-left: 10rem;
+    font-style: italic;
+    color: rgb(82, 81, 81);
+
 }
 .text-container {
   margin: 1rem 2rem;

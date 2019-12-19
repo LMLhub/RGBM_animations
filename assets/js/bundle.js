@@ -14913,9 +14913,9 @@
                 n = V(histograms.pick(10 * t, null));
               Y(window.barplot, t, e), Y(window.histogram, t, n), t++;
               const histogram_time_span = document.getElementById("histogram_time");
-              histogram_time_span.innerHTML = "Time " + t
+              histogram_time_span.innerHTML = "Time: " + t + " years"
               const animation_time_span = document.getElementById("animation_time");
-              animation_time_span.innerHTML = "Time " + t
+              animation_time_span.innerHTML = "Time: " + t + " years"
 
             } else (window.isDone = !0), clearInterval(window.animate);
         }, 300)),
