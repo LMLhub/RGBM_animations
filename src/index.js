@@ -41,6 +41,10 @@ function plotTimeStep(chart, step, data) {
   };
   chart.data.labels = range(data.length);
   chart.data.datasets = [{ backgroundColor: '#c45850', data: data }];
+  const histogram_time_span = document.getElementById("histogram_time");
+    histogram_time_span.innerHTML =  t + " years"
+  const animation_time_span = document.getElementById("animation_time");
+    animation_time_span.innerHTML = t + " years"
   chart.update();
 }
 
