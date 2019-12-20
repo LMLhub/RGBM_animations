@@ -17,6 +17,12 @@ To turn these pdf's into a .gif or .mov one currently has to use a conversion to
 
 # JS animations
 
+First, switch to the animation folder:
+
+```shell
+$> cd js_animation
+```
+
 Install dependencies:
 
 ```shell
@@ -29,4 +35,4 @@ Build js bundle:
 $> npm run build
 ```
 
-And open [index.html](index.html) in your browser.
+And open [index.html](js_animation/index.html) in your browser.
