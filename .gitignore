@@ -123,3 +123,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# macOS
+.DS_Store
+
+# editor
+.vscode/
+
+# direnv
+.envrc
+
+# JS dependencies
+node_modules/
